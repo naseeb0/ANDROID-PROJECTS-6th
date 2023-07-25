@@ -1,68 +1,92 @@
 package com.example.simpleinterst;
 
 import android.os.Bundle;
-import android.view.Gravity;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String[] names = {"Naseeb", "Kalpana", "Rahul", "Emma", "David", "Sophia", "Daniel", "Olivia"};
-    private int[] ages = {25, 30, 28, 22, 35, 27, 29, 31};
-    private String[] genders = {"Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female"};
+    private EditText editTextResult;
+    private double operand1 = Double.NaN;
+    private String operator = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TableLayout tableLayout = findViewById(R.id.tableLayout);
+        editTextResult = findViewById(R.id.editTextResult);
+    }
 
-        
-        TableRow headerRow = new TableRow(this);
-        headerRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+    public void onDigitClick(View view) {
+        Button button = (Button) view;
+        editTextResult.append(button.getText().toString());
+    }
 
-        
-        String[] headers = {"Name", "Age", "Gender"};
-        for (String header : headers) {
-            TextView headerTextView = createTextView(header);
-            headerRow.addView(headerTextView);
-        }
-
-        
-        tableLayout.addView(headerRow);
-
-        
-        for (int i = 0; i < names.length; i++) {
-            TableRow dataRow = new TableRow(this);
-            dataRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
-
-            
-            TextView nameTextView = createTextView(names[i]);
-            dataRow.addView(nameTextView);
-
-            
-            TextView ageTextView = createTextView(String.valueOf(ages[i]));
-            dataRow.addView(ageTextView);
-
-            
-            TextView genderTextView = createTextView(genders[i]);
-            dataRow.addView(genderTextView);
-
-            
-            tableLayout.addView(dataRow);
+    public void onDecimalClick(View view) {
+        if (!editTextResult.getText().toString().contains(".")) {
+            editTextResult.append(".");
         }
     }
 
-    
-    private TextView createTextView(String text) {
-        TextView textView = new TextView(this);
-        textView.setText(text);
-        textView.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-        textView.setGravity(Gravity.CENTER);
-        return textView;
+    public void onOperatorClick(View view) {
+        Button button = (Button) view;
+        operator = button.getText().toString();
+        operand1 = Double.parseDouble(editTextResult.getText().toString());
+        editTextResult.setText("");
+    }
+
+    public void onClearClick(View view) {
+        editTextResult.setText("");
+        operand1 = Double.NaN;
+        operator = "";
+    }
+
+    public void onPlusMinusClick(View view) {
+        if (!editTextResult.getText().toString().isEmpty()) {
+            double value = Double.parseDouble(editTextResult.getText().toString());
+            editTextResult.setText(String.valueOf(-value));
+        }
+    }
+
+    public void onPercentClick(View view) {
+        if (!editTextResult.getText().toString().isEmpty()) {
+            double value = Double.parseDouble(editTextResult.getText().toString()) / 100.0;
+            editTextResult.setText(String.valueOf(value));
+        }
+    }
+
+    public void onEqualsClick(View view) {
+        if (!operator.isEmpty()) {
+            String secondOperandStr = editTextResult.getText().toString();
+            if (!secondOperandStr.isEmpty()) {
+                double secondOperand = Double.parseDouble(secondOperandStr);
+                double result = calculateResult(operand1, secondOperand, operator);
+                editTextResult.setText(String.valueOf(result));
+                operator = "";
+                operand1 = Double.NaN;
+            }
+        }
+    }
+
+    private double calculateResult(double operand1, double operand2, String operator) {
+        switch (operator) {
+            case "+":
+                return operand1 + operand2;
+            case "-":
+                return operand1 - operand2;
+            case "*":
+                return operand1 * operand2;
+            case "/":
+                if (operand2 == 0) {
+                    return Double.NaN; // Division by zero
+                }
+                return operand1 / operand2;
+            default:
+                return Double.NaN; // Invalid operator
+        }
     }
 }
