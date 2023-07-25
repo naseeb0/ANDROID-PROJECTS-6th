@@ -1,15 +1,14 @@
-<resources>
-    <string name="app_name">LIBRARY UI</string>
 
-    <string-array name="genre_array">
-        <item>Adventure</item>
-        <item>Romance</item>
-        <item>Mystery</item>
-        <item>Science Fiction</item>
-        <item>Thriller</item>
-        <item>Fantasy</item>
-        <item>Drama</item>
-        <item>Horror</item>
-        <item>Non-Fiction</item>
+<resources>
+    <string name="app_name">PATIENT UI</string>
+    <string-array name="blood_group_array">
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+        <item>O+</item>
+        <item>O-</item>
     </string-array>
 </resources>

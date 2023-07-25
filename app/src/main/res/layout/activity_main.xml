@@ -1,68 +1,83 @@
-<LinearLayout
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/editTextTitle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Book Title"/>
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/editTextAuthor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Author"/>
+        <EditText
+            android:id="@+id/editTextPatientName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Patient Name"/>
 
-    <EditText
-        android:id="@+id/editTextISBN"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="ISBN"/>
+        <EditText
+            android:id="@+id/editTextAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Age"
+            android:inputType="number"/>
 
-    <Spinner
-        android:id="@+id/spinnerGenre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Genre"
-        android:entries="@array/genre_array"/>
+        <RadioGroup
+            android:id="@+id/radioGroupGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/editTextPublicationYear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Publication Year"
-        android:inputType="number"
-        android:focusable="false"/>
+            <RadioButton
+                android:id="@+id/radioButtonMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"/>
 
-    <EditText
-        android:id="@+id/editTextNumberOfPages"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Number of Pages"
-        android:inputType="number"/>
+            <RadioButton
+                android:id="@+id/radioButtonFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"/>
 
-    <CheckBox
-        android:id="@+id/checkBoxAvailability"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Available"/>
+        </RadioGroup>
 
-    <EditText
-        android:id="@+id/editTextDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Description"
-        android:inputType="textMultiLine"/>
+        <EditText
+            android:id="@+id/editTextPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:inputType="phone"/>
 
-    <Button
-        android:id="@+id/buttonAddBook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Add Book"/>
+        <EditText
+            android:id="@+id/editTextAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Address"
+            android:inputType="textPostalAddress"/>
 
-</LinearLayout>
+        <Spinner
+            android:id="@+id/spinnerBloodGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Blood Group"
+            android:entries="@array/blood_group_array"/>
+
+        <EditText
+            android:id="@+id/editTextMedicalHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Medical History"
+            android:inputType="textMultiLine"/>
+
+        <Button
+            android:id="@+id/buttonRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Register"/>
+
+    </LinearLayout>
+
+</ScrollView>
