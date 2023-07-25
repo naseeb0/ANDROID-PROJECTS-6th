@@ -1,83 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:orientation="vertical">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <EditText
-            android:id="@+id/editTextPatientName"
+        <TableLayout
+            android:id="@+id/tableLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Patient Name"/>
+            android:stretchColumns="*">
 
-        <EditText
-            android:id="@+id/editTextAge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Age"
-            android:inputType="number"/>
+        </TableLayout>
+    </ScrollView>
 
-        <RadioGroup
-            android:id="@+id/radioGroupGender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/radioButtonMale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Male"/>
-
-            <RadioButton
-                android:id="@+id/radioButtonFemale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Female"/>
-
-        </RadioGroup>
-
-        <EditText
-            android:id="@+id/editTextPhoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Phone Number"
-            android:inputType="phone"/>
-
-        <EditText
-            android:id="@+id/editTextAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Address"
-            android:inputType="textPostalAddress"/>
-
-        <Spinner
-            android:id="@+id/spinnerBloodGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Blood Group"
-            android:entries="@array/blood_group_array"/>
-
-        <EditText
-            android:id="@+id/editTextMedicalHistory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Medical History"
-            android:inputType="textMultiLine"/>
-
-        <Button
-            android:id="@+id/buttonRegister"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Register"/>
-
-    </LinearLayout>
-
-</ScrollView>
+</LinearLayout>

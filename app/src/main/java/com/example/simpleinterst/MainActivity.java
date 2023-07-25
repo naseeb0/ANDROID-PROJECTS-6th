@@ -1,59 +1,68 @@
 package com.example.simpleinterst;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
-import android.widget.Toast;
+import android.view.Gravity;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText editTextPatientName, editTextAge, editTextPhoneNumber, editTextAddress, editTextMedicalHistory;
-    private RadioGroup radioGroupGender;
-    private Spinner spinnerBloodGroup;
-    private Button buttonRegister;
+    private String[] names = {"Naseeb", "Kalpana", "Rahul", "Emma", "David", "Sophia", "Daniel", "Olivia"};
+    private int[] ages = {25, 30, 28, 22, 35, 27, 29, 31};
+    private String[] genders = {"Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Find views by their IDs
-        editTextPatientName = findViewById(R.id.editTextPatientName);
-        editTextAge = findViewById(R.id.editTextAge);
-        radioGroupGender = findViewById(R.id.radioGroupGender);
-        editTextPhoneNumber = findViewById(R.id.editTextPhoneNumber);
-        editTextAddress = findViewById(R.id.editTextAddress);
-        spinnerBloodGroup = findViewById(R.id.spinnerBloodGroup);
-        editTextMedicalHistory = findViewById(R.id.editTextMedicalHistory);
-        buttonRegister = findViewById(R.id.buttonRegister);
+        TableLayout tableLayout = findViewById(R.id.tableLayout);
 
-        // Handle button click to register the patient
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerPatient();
-            }
-        });
+        
+        TableRow headerRow = new TableRow(this);
+        headerRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+
+        
+        String[] headers = {"Name", "Age", "Gender"};
+        for (String header : headers) {
+            TextView headerTextView = createTextView(header);
+            headerRow.addView(headerTextView);
+        }
+
+        
+        tableLayout.addView(headerRow);
+
+        
+        for (int i = 0; i < names.length; i++) {
+            TableRow dataRow = new TableRow(this);
+            dataRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+
+            
+            TextView nameTextView = createTextView(names[i]);
+            dataRow.addView(nameTextView);
+
+            
+            TextView ageTextView = createTextView(String.valueOf(ages[i]));
+            dataRow.addView(ageTextView);
+
+            
+            TextView genderTextView = createTextView(genders[i]);
+            dataRow.addView(genderTextView);
+
+            
+            tableLayout.addView(dataRow);
+        }
     }
 
-    // Register the patient
-    private void registerPatient() {
-        String patientName = editTextPatientName.getText().toString();
-        int age = Integer.parseInt(editTextAge.getText().toString());
-        String gender = ((RadioButton) findViewById(radioGroupGender.getCheckedRadioButtonId())).getText().toString();
-        String phoneNumber = editTextPhoneNumber.getText().toString();
-        String address = editTextAddress.getText().toString();
-        String bloodGroup = spinnerBloodGroup.getSelectedItem().toString();
-        String medicalHistory = editTextMedicalHistory.getText().toString();
-
-        // Implement your logic here to register the patient in the hospital
-        // For simplicity, we'll just show a Toast message indicating the registration is successful
-        String message = "Patient Registered: " + patientName;
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    
+    private TextView createTextView(String text) {
+        TextView textView = new TextView(this);
+        textView.setText(text);
+        textView.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+        textView.setGravity(Gravity.CENTER);
+        return textView;
     }
 }
